@@ -16,17 +16,26 @@ Object {
       "tests": Object {
         "enabled": true,
         "value": Object {
-          "componentName": "",
-          "dropdownTest": "",
-          "nested_instance": Object {
-            "enabled": true,
-            "value": Object {
-              "componentName": "",
-              "dropdownTest": "",
-              "random_instance": Object {
+          "enabled": true,
+          "value": Object {
+            "componentName": "",
+            "dropdownTest": "",
+            "nested_instance": Object {
+              "enabled": true,
+              "value": Object {
                 "enabled": true,
                 "value": Object {
+                  "componentName": "",
                   "dropdownTest": "",
+                  "random_instance": Object {
+                    "enabled": true,
+                    "value": Object {
+                      "enabled": true,
+                      "value": Object {
+                        "dropdownTest": "",
+                      },
+                    },
+                  },
                 },
               },
             },
@@ -37,12 +46,10 @@ Object {
     "lambda_builder": Object {
       "lambda_collection": Object {
         "enabled": true,
-        "value": Array [
-          Object {
-            "lambdaName": "",
-            "language": "",
-          },
-        ],
+        "value": Object {
+          "enabled": true,
+          "value": Array [],
+        },
       },
     },
   },
@@ -94,17 +101,26 @@ Object {
       "tests": Object {
         "enabled": true,
         "value": Object {
-          "componentName": "",
-          "dropdownTest": "",
-          "nested_instance": Object {
-            "enabled": true,
-            "value": Object {
-              "componentName": "",
-              "dropdownTest": "",
-              "random_instance": Object {
+          "enabled": true,
+          "value": Object {
+            "componentName": "",
+            "dropdownTest": "",
+            "nested_instance": Object {
+              "enabled": true,
+              "value": Object {
                 "enabled": true,
                 "value": Object {
+                  "componentName": "",
                   "dropdownTest": "",
+                  "random_instance": Object {
+                    "enabled": true,
+                    "value": Object {
+                      "enabled": true,
+                      "value": Object {
+                        "dropdownTest": "",
+                      },
+                    },
+                  },
                 },
               },
             },
@@ -161,17 +177,26 @@ Object {
       "tests": Object {
         "enabled": true,
         "value": Object {
-          "componentName": "",
-          "dropdownTest": "",
-          "nested_instance": Object {
-            "enabled": true,
-            "value": Object {
-              "componentName": "",
-              "dropdownTest": "",
-              "random_instance": Object {
+          "enabled": true,
+          "value": Object {
+            "componentName": "",
+            "dropdownTest": "",
+            "nested_instance": Object {
+              "enabled": true,
+              "value": Object {
                 "enabled": true,
                 "value": Object {
+                  "componentName": "",
                   "dropdownTest": "",
+                  "random_instance": Object {
+                    "enabled": true,
+                    "value": Object {
+                      "enabled": true,
+                      "value": Object {
+                        "dropdownTest": "",
+                      },
+                    },
+                  },
                 },
               },
             },
@@ -258,17 +283,26 @@ Object {
       "tests": Object {
         "enabled": true,
         "value": Object {
-          "componentName": "",
-          "dropdownTest": "",
-          "nested_instance": Object {
-            "enabled": true,
-            "value": Object {
-              "componentName": "",
-              "dropdownTest": "",
-              "random_instance": Object {
+          "enabled": true,
+          "value": Object {
+            "componentName": "",
+            "dropdownTest": "",
+            "nested_instance": Object {
+              "enabled": true,
+              "value": Object {
                 "enabled": true,
                 "value": Object {
+                  "componentName": "",
                   "dropdownTest": "",
+                  "random_instance": Object {
+                    "enabled": true,
+                    "value": Object {
+                      "enabled": true,
+                      "value": Object {
+                        "dropdownTest": "",
+                      },
+                    },
+                  },
                 },
               },
             },

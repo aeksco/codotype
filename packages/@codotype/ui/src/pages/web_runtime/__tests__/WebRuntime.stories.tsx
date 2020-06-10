@@ -17,6 +17,7 @@ import {
     RelationType,
     OptionType,
     Codotype,
+    GroupLayoutVariant,
 } from "@codotype/types";
 import { generatorReadme } from "@src/components/markdown_renderer/__tests__/test_state";
 const { cdkGeneratorMeta, dummyGeneratorMeta } = testState;
@@ -87,6 +88,10 @@ const stories: [string, GeneratorMeta][] = [
             configurationGroups: [
                 testState.ComponentBuilderConfigurationGroup,
                 testState.SideBySideConfigurationGroup,
+                {
+                    ...testState.LambdaBuilderConfigurationGroup,
+                    allowDisable: true,
+                },
             ],
             id: "chrome_extension_generator_05", // unique ID for the generator
             documentation: generatorReadme,
@@ -103,6 +108,11 @@ const stories: [string, GeneratorMeta][] = [
                     Datatype.STRING_ARRAY,
                 ],
                 configurationGroups: [
+                    {
+                        ...testState.LambdaBuilderConfigurationGroup,
+                        layoutVariant: GroupLayoutVariant.TABS,
+                        allowDisable: true,
+                    },
                     {
                         ...testState.ComponentBuilderConfigurationGroup,
                         label: "Meta",

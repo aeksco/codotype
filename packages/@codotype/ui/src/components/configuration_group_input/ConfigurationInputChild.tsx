@@ -95,7 +95,7 @@ export function ConfigurationInputChild(props: ConfigurationInputChildProps) {
         return (
             <select
                 className="form-control"
-                value={value}
+                value={value || ""}
                 onChange={e => {
                     setValue(e.currentTarget.value);
                 }}

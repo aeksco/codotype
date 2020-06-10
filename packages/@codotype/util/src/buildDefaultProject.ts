@@ -14,6 +14,26 @@ import {
 // // // //
 
 /**
+ * wrapValueInEnabled
+ * @param props
+ */
+export function wrapValueInEnabled(props: {
+  property: ConfigurationGroupProperty;
+  value: OptionValue;
+}): OptionValue {
+  const { property, value } = props;
+
+  if (property.allowDisable && !property.required) {
+    return {
+      enabled: property.enabled,
+      value
+    };
+  } else {
+    return value;
+  }
+}
+
+/**
  * buildConfigurationGroupPropertyValue
  * Accepts a single ConfigurationGroupProperty and recursively produces its associated OptionValue instance
  * @param property - the single ConfigurationGroupProperty for which the OptionValue is being produced
@@ -22,21 +42,36 @@ export function buildConfigurationGroupPropertyValue(
   property: ConfigurationGroupProperty
 ): OptionValue {
   if (property.type === OptionType.STRING) {
-    return property.defaultValue || "";
+    // return property.defaultValue || "";
+    return wrapValueInEnabled({ property, value: property.defaultValue || "" });
   }
   if (property.type === OptionType.BOOLEAN) {
-    return property.defaultValue || false;
+    // return property.defaultValue || false;
+    return wrapValueInEnabled({
+      property,
+      value: property.defaultValue || false
+    });
   }
   if (property.type === OptionType.DROPDOWN) {
-    return property.defaultValue || "";
+    // return property.defaultValue || "";
+    return wrapValueInEnabled({ property, value: property.defaultValue || "" });
   }
   if (property.type === OptionType.COLLECTION) {
-    return [buildValueFromProperties(property.properties)];
+    // return [buildValueFromProperties(property.properties)];
+    return wrapValueInEnabled({
+      property,
+      value: []
+      // value: [buildValueFromProperties(property.properties)]
+    });
     // Should return this:
     // return [];
   }
   if (property.type === OptionType.INSTANCE) {
-    return buildValueFromProperties(property.properties);
+    return wrapValueInEnabled({
+      property,
+      value: buildValueFromProperties(property.properties)
+    });
+    // return buildValueFromProperties(property.properties);
   }
   return "";
 }
@@ -56,16 +91,11 @@ export function buildValueFromProperties(
   const configurationGroupValue: OptionValueInstance = properties.reduce(
     (val, property: ConfigurationGroupProperty) => {
       // Updates val with data for ConfigurationGroupProperty
-      if (property.allowDisable && !property.required) {
-        val[property.identifier] = {
-          enabled: property.enabled,
-          value: buildConfigurationGroupPropertyValue(property)
-        };
-      } else {
-        val[property.identifier] = buildConfigurationGroupPropertyValue(
-          property
-        );
-      }
+      val[property.identifier] = wrapValueInEnabled({
+        property,
+        value: buildConfigurationGroupPropertyValue(property)
+      });
+
       // Returns val
       return val;
     },
@@ -93,17 +123,11 @@ export function buildConfigurationGroupValue(
     const configurationGroupValue: OptionValueInstance = configurationGroup.properties.reduce(
       (val, property: ConfigurationGroupProperty) => {
         // Updates val with data for ConfigurationGroupProperty
-        // TODO - remove this - the UI should only care if the property can allow disable or not
-        if (property.allowDisable && !property.required) {
-          val[property.identifier] = {
-            enabled: property.enabled,
-            value: buildConfigurationGroupPropertyValue(property)
-          };
-        } else {
-          val[property.identifier] = buildConfigurationGroupPropertyValue(
-            property
-          );
-        }
+        val[property.identifier] = wrapValueInEnabled({
+          property,
+          value: buildConfigurationGroupPropertyValue(property)
+        });
+
         // Returns val
         return val;
       },
@@ -125,11 +149,11 @@ export function buildConfigurationGroupValue(
         // Iterates over each property in the ConfigurationGroupSection
         const sectionValue: OptionValueInstance = section.properties.reduce(
           (val, property: ConfigurationGroupProperty) => {
-            // Sets value for ConfigurationGroupSection
-            val[property.identifier] = {
-              enabled: property.enabled,
+            // Updates val with data for ConfigurationGroupProperty
+            val[property.identifier] = wrapValueInEnabled({
+              property,
               value: buildConfigurationGroupPropertyValue(property)
-            };
+            });
 
             // Returns val
             return val;

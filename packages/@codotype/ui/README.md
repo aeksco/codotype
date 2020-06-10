@@ -45,3 +45,7 @@ yarn storybook
 **Misc. References**
 
 -   [Eslint + Prettier + Typescript Guide](https://dev.to/robertcoopercode/using-eslint-and-prettier-in-a-typescript-project-53jb)
+
+**Notes**
+
+-   https://medium.com/javascript-in-plain-english/ssr-with-next-js-styled-components-and-material-ui-b1e88ac11dfa

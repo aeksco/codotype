@@ -2,6 +2,7 @@ import * as React from "react";
 import { OptionType, ConfigurationGroupProperty } from "@codotype/types";
 import classnames from "classnames";
 import { DocumentationModal } from "../DocumentationModal";
+import Switch from "react-switch";
 
 // // // //
 
@@ -24,14 +25,19 @@ export function ConfigurationInputFormGroup(
 
     // Defines checkbox to enable/disable
     const toggleEnabledCheckbox = (
-        <input
-            type="checkbox"
-            checked={enabled}
-            onChange={e => {
+        <Switch
+            height={22}
+            width={50}
+            offColor={"#888"}
+            onColor={"#4582ec"}
+            checkedIcon={false}
+            uncheckedIcon={false}
+            onChange={(updatedEnabled: boolean) => {
                 if (props.onChangeEnabled) {
-                    props.onChangeEnabled(e.currentTarget.checked);
+                    props.onChangeEnabled(updatedEnabled);
                 }
             }}
+            checked={enabled}
         />
     );
 
@@ -119,6 +125,8 @@ export function ConfigurationInputFormGroup(
                 <div className="d-flex align-items-center">
                     {formGroupHeader}
                 </div>
+                {/* Render toggleEnabledCheckbox */}
+                {property.allowDisable && toggleEnabledCheckbox}
             </div>
 
             {formGroupDescription}

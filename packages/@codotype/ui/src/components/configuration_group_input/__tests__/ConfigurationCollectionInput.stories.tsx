@@ -6,6 +6,7 @@ import {
     testState,
     ConfigurationGroup,
     OptionValue,
+    ConfigurationGroupProperty,
 } from "@codotype/types";
 const { LambdaBuilderConfigurationGroup } = testState;
 import { Story } from "@src/components/dev";
@@ -29,8 +30,23 @@ const storyCollection = storiesOf(
 
 stories.forEach(story => {
     storyCollection.add(story[0], () => {
+        // // // //
+        // Testing with allowDisable
+        const collectionProperty: ConfigurationGroupProperty =
+            story[1].properties[0];
+        const collectionProperties = [
+            {
+                ...collectionProperty.properties[0],
+                allowDisable: true,
+            },
+            collectionProperty.properties[1],
+        ];
+
+        collectionProperty.properties = collectionProperties;
+        // // // //
+
         const [value, setValue] = React.useState<OptionValue>(
-            buildConfigurationGroupPropertyValue(story[1].properties[0]),
+            buildConfigurationGroupPropertyValue(collectionProperty),
         );
         return (
             <Story>
@@ -38,21 +54,21 @@ stories.forEach(story => {
                     label="Lambda Functions"
                     identifiers={{
                         singular: {
-                            label: "Lambdasss",
-                            snake: "lambdasss",
-                            camel: "lambdasss",
-                            pascal: "Lambdasss",
-                            kebab: "lambdasss",
+                            label: "Lambda",
+                            snake: "lambda",
+                            camel: "lambda",
+                            pascal: "Lambda",
+                            kebab: "lambda",
                         },
                         plural: {
-                            label: "Lambdassss",
-                            snake: "lambdassss",
-                            camel: "lambdassss",
-                            pascal: "Lambdassss",
-                            kebab: "lambdassss",
+                            label: "Lambdas",
+                            snake: "lambdas",
+                            camel: "lambdas",
+                            pascal: "Lambdas",
+                            kebab: "lambdas",
                         },
                     }}
-                    properties={story[1].properties[0].properties}
+                    properties={collectionProperty.properties}
                     value={value}
                     onChange={(updatedVal: OptionValue) => {
                         setValue(updatedVal);

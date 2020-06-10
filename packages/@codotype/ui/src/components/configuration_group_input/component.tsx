@@ -83,25 +83,56 @@ export function ConfigurationInput(props: ConfigurationInputProps) {
                         (property: ConfigurationGroupProperty) => {
                             if (property.type === OptionType.COLLECTION) {
                                 return (
-                                    <ConfigurationCollectionInput
-                                        label={property.label}
-                                        identifiers={{
-                                            singular: {
-                                                ...EMPTY_TOKEN_CASING,
-                                            },
-                                            plural: {
-                                                ...EMPTY_TOKEN_CASING,
-                                            },
-                                        }}
-                                        properties={property.properties}
-                                        onChange={(updatedVal: OptionValue) => {
+                                    <ConfigurationInputFormGroup
+                                        key={property.identifier}
+                                        enabled={
+                                            // @ts-ignore
+                                            props.value[property.identifier]
+                                                .enabled
+                                        }
+                                        onChangeEnabled={(
+                                            updatedEnabled: boolean,
+                                        ) => {
+                                            const updatedPropertyValue: OptionValue =
+                                                // @ts-ignore
+                                                props.value[
+                                                    property.identifier
+                                                ];
+
+                                            // @ts-ignore
+                                            updatedPropertyValue.enabled = updatedEnabled;
                                             props.onChange({
                                                 ...props.value,
-                                                // [property.identifier]: updatedVal,
+                                                [property.identifier]: updatedPropertyValue,
                                             });
                                         }}
-                                        value={props.value}
-                                    />
+                                        property={property}
+                                    >
+                                        <ConfigurationCollectionInput
+                                            label={property.label}
+                                            identifiers={{
+                                                singular: {
+                                                    ...EMPTY_TOKEN_CASING,
+                                                },
+                                                plural: {
+                                                    ...EMPTY_TOKEN_CASING,
+                                                },
+                                            }}
+                                            properties={property.properties}
+                                            onChange={(
+                                                updatedVal: OptionValue,
+                                            ) => {
+                                                props.onChange({
+                                                    ...props.value,
+                                                    [property.identifier]: updatedVal,
+                                                });
+                                            }}
+                                            value={
+                                                // @ts-ignore
+                                                props.value[property.identifier]
+                                            }
+                                        />
+                                    </ConfigurationInputFormGroup>
                                 );
                             }
 
@@ -152,12 +183,25 @@ export function ConfigurationInput(props: ConfigurationInputProps) {
                             return (
                                 <ConfigurationInputFormGroup
                                     card
-                                    enabled={true}
-                                    property={property}
-                                    key={property.identifier}
-                                    onChangeEnabled={() => {
-                                        console.log("onChangeEnabled");
+                                    enabled={
+                                        // @ts-ignore
+                                        props.value[property.identifier].enabled
+                                    }
+                                    onChangeEnabled={(
+                                        updatedEnabled: boolean,
+                                    ) => {
+                                        const updatedPropertyValue: OptionValue =
+                                            // @ts-ignore
+                                            props.value[property.identifier];
+
+                                        // @ts-ignore
+                                        updatedPropertyValue.enabled = updatedEnabled;
+                                        props.onChange({
+                                            ...props.value,
+                                            [property.identifier]: updatedPropertyValue,
+                                        });
                                     }}
+                                    property={property}
                                 >
                                     <ConfigurationInputChild
                                         value={value}
