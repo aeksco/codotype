@@ -178,17 +178,6 @@ allowDisableOptions.forEach(allowDisable => {
     });
 });
 
-// const layoutVariantStories: [string, GroupLayoutVariant, boolean][] = [
-//     ["API Examples - TABS layoutVariant", GroupLayoutVariant.TABS, false],
-//     ["API Examples - LIST layoutVariant", GroupLayoutVariant.LIST, false],
-//     ["API Examples - DOCS_3x9 layoutVariant", GroupLayoutVariant.DOCS_3x9, false],
-//     ["API Examples - DOCS_4x8 layoutVariant", GroupLayoutVariant.DOCS_4x8, false],
-//     ["API Examples - DOCS_6x6 layoutVariant", GroupLayoutVariant.DOCS_6x6, false],
-//     ["API Examples - DETAIL_3x9 layoutVariant", GroupLayoutVariant.DETAIL_3x9, false],
-//     ["API Examples - DETAIL_4x8 layoutVariant", GroupLayoutVariant.DETAIL_4x8, false],
-//     ["API Examples - DETAIL_6x6 layoutVariant", GroupLayoutVariant.DETAIL_6x6, false],
-// ];
-
 layoutVariantStoriesNew.forEach(testCase => {
     const storyCollection = storiesOf(testCase[0], module);
 
